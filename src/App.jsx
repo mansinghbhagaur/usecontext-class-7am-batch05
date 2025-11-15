@@ -6,7 +6,7 @@ const App =()=>{
   console.log(data);
   return (
     <>
-      <h1>hello everyone</h1>
+      <h1>hello everyone aur kaise ho</h1>
       <button onClick={()=> data.setThemeMode(data.ThemeMode === "light" ? "dark" : "light")}>{data?.ThemeMode}</button>
     </>
   )

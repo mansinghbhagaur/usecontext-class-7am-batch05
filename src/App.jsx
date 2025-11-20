@@ -32,8 +32,14 @@
 
 import { useReducer } from "react";
 import { reducer } from "./reducer/counterReducer";
+import { useFetch } from "./customhook/useFetch";
+
 const App = () => {
   const [state, dispatch] = useReducer(reducer, 0);
+  const {data, loading} = useFetch("https://jsonplaceholder.typicode.com/todos/1");
+
+  console.log("fetch data", data);
+
   return (
     <>
     <h1>App Component</h1>
@@ -41,6 +47,14 @@ const App = () => {
     <button onClick={()=> dispatch({type: "INCREMENT", data: {name : "man", age: 0} })}>INcrement</button>
     <button onClick={()=> dispatch({type: "DECREMENT"})}>decrement</button>
     <button onClick={()=> dispatch({type: "RESET"})}>Reset</button>
+    <h1>show fetch data</h1>
+    <ul>
+      {
+        [data]?.map((item, i)=>(
+          <li key={i}>{item.title}</li>
+        ))
+      }
+    </ul>
     </>
   )
 }

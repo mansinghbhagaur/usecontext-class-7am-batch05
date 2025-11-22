@@ -36,9 +36,12 @@ import { useFetch } from "./customhook/useFetch";
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, 0);
-  const {data, loading} = useFetch("https://jsonplaceholder.typicode.com/todos/1");
+  const {data, loading} = useFetch("https://jsonplaceholder.typicode.com/users");
 
   console.log("fetch data", data);
+  if(loading) {
+    return "Loading Components..."
+  }
 
   return (
     <>
@@ -50,11 +53,16 @@ const App = () => {
     <h1>show fetch data</h1>
     <ul>
       {
-        [data]?.map((item, i)=>(
-          <li key={i}>{item.title}</li>
-        ))
+        // loading ?  "Loading data..." :
+        data?.map((item, i)=>(
+          <>
+          <li key={i}>Id: {item.id} userId: {item.userId} Name: {item.title} completed: {item.completed === true ? "completed" : "Incompleted"}</li>
+          {/* <li key={i}>{item.title}</li> */}
+          </>
+        )) 
       }
     </ul>
+    {loading && "Loading fetch data..."}
     </>
   )
 }

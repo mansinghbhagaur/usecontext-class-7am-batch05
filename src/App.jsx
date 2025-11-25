@@ -1,3 +1,28 @@
+import { Link, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Contactus from "./pages/Contactus";
+
+const App = () => {
+ 
+  return (
+    <>
+      <div style={{ background: "red", display: 'flex' }}>
+        <h1>Logo</h1>
+        <div>
+          <Link to="/">Home</Link>
+          <Link to="contact">Contact</Link>
+        </div>
+      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="contact?/:id" element={<Contactus />} />
+      </Routes>
+    </>
+  );
+};
+
+export default App;
+
 // import { useContext, useReducer } from "react";
 // import { Store } from "./context/store";
 
@@ -27,44 +52,43 @@
 
 // const [state, dispatch] = useReducer(reducerFunction, initialState)
 
+// // useReducer
 
-// useReducer 
+// import { useReducer } from "react";
+// import { reducer } from "./reducer/counterReducer";
+// import { useFetch } from "./customhook/useFetch";
 
-import { useReducer } from "react";
-import { reducer } from "./reducer/counterReducer";
-import { useFetch } from "./customhook/useFetch";
+// const App = () => {
+//   const [state, dispatch] = useReducer(reducer, 0);
+//   const {data, loading} = useFetch("https://jsonplaceholder.typicode.com/users");
 
-const App = () => {
-  const [state, dispatch] = useReducer(reducer, 0);
-  const {data, loading} = useFetch("https://jsonplaceholder.typicode.com/users");
+//   console.log("fetch data", data);
+//   if(loading) {
+//     return "Loading Components..."
+//   }
 
-  console.log("fetch data", data);
-  if(loading) {
-    return "Loading Components..."
-  }
+//   return (
+//     <>
+//     <h1>App Component</h1>
+//     <h1>counter value {state}</h1>
+//     <button onClick={()=> dispatch({type: "INCREMENT", data: {name : "man", age: 0} })}>INcrement</button>
+//     <button onClick={()=> dispatch({type: "DECREMENT"})}>decrement</button>
+//     <button onClick={()=> dispatch({type: "RESET"})}>Reset</button>
+//     <h1>show fetch data</h1>
+//     <ul>
+//       {
+//         // loading ?  "Loading data..." :
+//         data?.map((item, i)=>(
+//           <>
+//           <li key={i}>Id: {item.id} userId: {item.userId} Name: {item.title} completed: {item.completed === true ? "completed" : "Incompleted"}</li>
+//           {/* <li key={i}>{item.title}</li> */}
+//           </>
+//         ))
+//       }
+//     </ul>
+//     {loading && "Loading fetch data..."}
+//     </>
+//   )
+// }
 
-  return (
-    <>
-    <h1>App Component</h1>
-    <h1>counter value {state}</h1>
-    <button onClick={()=> dispatch({type: "INCREMENT", data: {name : "man", age: 0} })}>INcrement</button>
-    <button onClick={()=> dispatch({type: "DECREMENT"})}>decrement</button>
-    <button onClick={()=> dispatch({type: "RESET"})}>Reset</button>
-    <h1>show fetch data</h1>
-    <ul>
-      {
-        // loading ?  "Loading data..." :
-        data?.map((item, i)=>(
-          <>
-          <li key={i}>Id: {item.id} userId: {item.userId} Name: {item.title} completed: {item.completed === true ? "completed" : "Incompleted"}</li>
-          {/* <li key={i}>{item.title}</li> */}
-          </>
-        )) 
-      }
-    </ul>
-    {loading && "Loading fetch data..."}
-    </>
-  )
-}
-
-export default App;
+// export default App;

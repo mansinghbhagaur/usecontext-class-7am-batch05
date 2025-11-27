@@ -1,22 +1,29 @@
 import { Link, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Contactus from "./pages/Contactus";
+import Header from "./pages/Header";
+import Footer from "./pages/Footer";
+import { Erro404 } from "./pages/Erro404";
+import { Layout } from "./layout/Layout";
 
 const App = () => {
- 
   return (
     <>
-      <div style={{ background: "red", display: 'flex' }}>
-        <h1>Logo</h1>
-        <div>
-          <Link to="/">Home</Link>
-          <Link to="contact">Contact</Link>
-        </div>
-      </div>
-      <Routes>
+      {/* <Header /> */}
+      {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="contact?/:id" element={<Contactus />} />
+        <Route path="*" element={<Erro404 />} />
+      </Routes> */}
+
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route path="/" element={<Home />} />
+          <Route path="contact-us?/:id" element={<Contactus />} />
+        </Route>
+        <Route path="*" element={<Erro404/>} />
       </Routes>
+      {/* <Footer /> */}
     </>
   );
 };
